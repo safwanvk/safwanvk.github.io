@@ -1,0 +1,11 @@
+---
+import Section from "./Section.astro";
+import ProjectCard from "./ProjectCard.astro";
+import { otherProjects } from "../data/projects";
+---
+
+<Section id="more-projects" label="More work" title="Other projects">
+  <div class="project-grid">
+    {otherProjects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</Section>

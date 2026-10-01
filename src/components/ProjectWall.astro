@@ -1,0 +1,62 @@
+---
+import { featuredProjects } from "../data/projects";
+import type { Project } from "../data/projects";
+
+type ColumnConfig = {
+  duration: string;
+  direction: "normal" | "reverse";
+  hideOnMobile?: boolean;
+  projectIndices: number[];
+};
+
+const columns: ColumnConfig[] = [
+  { duration: "64s", direction: "normal", projectIndices: [0, 1, 2, 3] },
+  { duration: "78s", direction: "reverse", projectIndices: [1, 2, 3, 0] },
+  { duration: "70s", direction: "normal", hideOnMobile: true, projectIndices: [2, 3, 0, 1] },
+  { duration: "72s", direction: "reverse", hideOnMobile: true, projectIndices: [3, 0, 1, 2] },
+];
+
+function cardsForColumn(indices: number[]): Project[] {
+  const base = indices.map((i) => featuredProjects[i % featuredProjects.length]);
+  return [...base, ...base];
+}
+---
+
+<section id="projects" class="project-wall-section" aria-labelledby="projects-wall-label">
+  <h2 id="projects-wall-label" class="sr-only">Featured projects</h2>
+  <div class="project-wall container-gutter">
+    {
+      columns.map((col) => (
+        <div
+          class:list={[
+            "project-wall__column",
+            { "project-wall__column--hide-mobile": col.hideOnMobile },
+          ]}
+        >
+          <div
+            class="project-wall__track"
+            style={`--wall-duration: ${col.duration}; --wall-direction: ${col.direction}`}
+          >
+            {cardsForColumn(col.projectIndices).map((project) => (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-wall-card"
+                style={`--card-accent: ${project.accent ?? "#222"}`}
+              >
+                <div class="project-wall-card__bg" aria-hidden="true" />
+                <div class="project-wall-card__content">
+                  <p class="project-wall-card__name">{project.name}</p>
+                  <p class="project-wall-card__stack">
+                    {project.stack.slice(0, 3).join(" · ")}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

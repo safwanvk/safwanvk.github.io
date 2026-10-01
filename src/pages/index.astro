@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Hero from "../components/Hero.astro";
+import ProjectWall from "../components/ProjectWall.astro";
+import AboutSection from "../components/AboutSection.astro";
+import HowIBuild from "../components/HowIBuild.astro";
+import SkillsTabs from "../components/SkillsTabs.astro";
+import ExperienceAccordion from "../components/ExperienceAccordion.astro";
+import OtherProjects from "../components/OtherProjects.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout>
+  <SiteHeader />
+  <main>
+    <Hero />
+    <ProjectWall />
+    <AboutSection />
+    <HowIBuild />
+    <SkillsTabs />
+    <ExperienceAccordion />
+    <OtherProjects />
+  </main>
+  <SiteFooter />
+</BaseLayout>

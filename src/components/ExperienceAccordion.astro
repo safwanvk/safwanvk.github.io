@@ -1,0 +1,55 @@
+---
+import Section from "./Section.astro";
+import { jobs } from "../data/experience";
+import { profile } from "../data/profile";
+---
+
+<Section id="experience" label="Experience" title="Where I've worked">
+  <div class="accordion">
+    {
+      jobs.map((job, index) => (
+        <article
+          class:list={["accordion-item", { "is-open": index === 0 }]}
+          data-accordion-item
+        >
+          <button
+            type="button"
+            class="accordion-trigger"
+            data-accordion-trigger
+            aria-expanded={index === 0 ? "true" : "false"}
+          >
+            <span>
+              <span class="accordion-trigger__role">{job.title}</span>
+              <span class="accordion-trigger__meta"> · {job.company}</span>
+            </span>
+            <span class="accordion-trigger__meta">{job.period}</span>
+            <span class="accordion-trigger__icon" aria-hidden="true">
+              +
+            </span>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel__inner">
+              <div class="accordion-panel__content">
+                <p style="margin: 0 0 0.75rem;">
+                  <a class="link" href={job.companyUrl} target="_blank" rel="noopener noreferrer">
+                    {job.company}
+                  </a>
+                </p>
+                <ul>
+                  {job.highlights.map((line) => (
+                    <li>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+  <p style="margin-top: 1.5rem;">
+    <a class="btn btn--ghost" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+      View full resume <span aria-hidden="true">→</span>
+    </a>
+  </p>
+</Section>

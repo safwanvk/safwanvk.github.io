@@ -1,0 +1,40 @@
+---
+import Section from "./Section.astro";
+import { skillCategories } from "../data/skills";
+---
+
+<Section id="skills" label="Skills" title="Technologies I work with">
+  <div data-skills-tabs>
+    <div class="skills-tabs" role="tablist" aria-label="Skill categories">
+      {
+        skillCategories.map((cat, index) => (
+          <button
+            type="button"
+            role="tab"
+            class="skills-tab"
+            data-tab={cat.id}
+            aria-selected={index === 0 ? "true" : "false"}
+            aria-controls={`panel-${cat.id}`}
+            id={`tab-${cat.id}`}
+          >
+            {cat.label}
+          </button>
+        ))
+      }
+    </div>
+    {
+      skillCategories.map((cat, index) => (
+        <div
+          id={`panel-${cat.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${cat.id}`}
+          class:list={["skills-panel", { "is-active": index === 0 }]}
+        >
+          {cat.items.map((item) => (
+            <span class="skill-pill">{item}</span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</Section>

@@ -1,0 +1,35 @@
+---
+import type { Project } from "../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="project-card">
+  <h3 class="project-card__title">
+    <a href={project.href} target="_blank" rel="noopener noreferrer">{project.name}</a>
+  </h3>
+  <p class="project-card__desc">{project.description}</p>
+  <div class="project-card__links">
+    {
+      project.codeUrl && (
+        <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
+          Source
+        </a>
+      )
+    }
+    {
+      project.secondaryUrl && (
+        <a href={project.secondaryUrl} target="_blank" rel="noopener noreferrer">
+          {project.secondaryLabel ?? "Learn more"}
+        </a>
+      )
+    }
+  </div>
+  <div class="project-card__stack">
+    {project.stack.map((tech) => <span>{tech}</span>)}
+  </div>
+</article>

@@ -1,0 +1,25 @@
+---
+import { profile } from "../data/profile";
+---
+
+<section id="top" class="container-gutter hero">
+  <h1 class="hero__title hero-animate">
+    <span class="block">{profile.headline[0]}</span>
+    <span class="block">{profile.headline[1]}</span>
+  </h1>
+  <p class="hero__subtitle hero-animate hero-animate--delay">{profile.tagline}</p>
+  <div class="hero__actions hero-animate hero-animate--delay">
+    <a class="btn btn--primary" href={`mailto:${profile.email}`}>
+      Get in touch <span aria-hidden="true">→</span>
+    </a>
+    <a class="btn btn--ghost" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+      View resume
+    </a>
+  </div>
+</section>
+
+<style>
+  .block {
+    display: block;
+  }
+</style>

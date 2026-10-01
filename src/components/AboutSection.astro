@@ -1,0 +1,22 @@
+---
+import Section from "./Section.astro";
+import { profile } from "../data/profile";
+---
+
+<Section id="about" label="About" title="Background">
+  {
+    profile.about.map((paragraph) => (
+      <p>
+        {paragraph.text}
+        {paragraph.link && (
+          <>
+            <a class="link" href={paragraph.link.href} target="_blank" rel="noopener noreferrer">
+              {paragraph.link.label}
+            </a>
+          </>
+        )}
+        {paragraph.suffix ?? ""}
+      </p>
+    ))
+  }
+</Section>
