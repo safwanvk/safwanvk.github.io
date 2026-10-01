@@ -1,0 +1,37 @@
+---
+interface StepMedia {
+  mockVideo: string;
+  mockImage: string;
+}
+
+interface Props {
+  step: StepMedia;
+  isActive: boolean;
+  layerClass?: string;
+}
+
+const { step, isActive, layerClass = "process-mock__layer" } = Astro.props;
+const loopSrc = step.mockVideo.replace(/\.mp4$/i, ".gif");
+---
+
+<div class:list={[layerClass, { "is-active": isActive }]} data-process-layer>
+  <video
+    class="process-mock__video"
+    muted
+    loop
+    playsinline
+    autoplay={isActive}
+    preload="metadata"
+    poster={step.mockImage}
+    data-process-video
+  >
+    <source src={step.mockVideo} type="video/mp4" />
+  </video>
+  <img
+    class="process-mock__loop"
+    src={loopSrc}
+    alt=""
+    loading="lazy"
+    decoding="async"
+  />
+</div>

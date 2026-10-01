@@ -3,10 +3,10 @@ import Section from "./Section.astro";
 import { profile } from "../data/profile";
 ---
 
-<Section id="about" label="About" title="Background">
+<Section id="about" label="About" title="Background" theme="dotted" align="center">
   {
     profile.about.map((paragraph) => (
-      <p>
+      <p class="text-body text-ink-muted">
         {paragraph.text}
         {paragraph.link && (
           <>

@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import { profile } from "../data/profile";
-
 interface Props {
   title?: string;
   description?: string;
@@ -38,9 +37,13 @@ const ogImage = `${profile.siteUrl}/img/og.png`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/png" href="/img/emojis/technologist.png" />
+    <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/GeistPixel-Square.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
-    <div class="bg-mesh" aria-hidden="true"></div>
+    <div class="dot-grid" aria-hidden="true">
+      <canvas class="dot-grid__canvas"></canvas>
+    </div>
     <div class="page">
       <slot />
     </div>

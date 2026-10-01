@@ -8,6 +8,7 @@ export type Project = {
   stack: string[];
   featured: boolean;
   accent?: string;
+  posterImage?: string;
 };
 
 export const projects: Project[] = [
@@ -20,6 +21,7 @@ export const projects: Project[] = [
     stack: ["Python", "FastAPI", "PostgreSQL", "Jinja"],
     featured: true,
     accent: "#1a3a2f",
+    posterImage: "/img/projects/invest-os.jpg",
   },
   {
     name: "InnoFlow",
@@ -32,6 +34,7 @@ export const projects: Project[] = [
     stack: ["Python", "DRF", "PostgreSQL", "Vue.js"],
     featured: true,
     accent: "#1e2a4a",
+    posterImage: "/img/projects/innoflow.jpg",
   },
   {
     name: "Foodai",
@@ -42,6 +45,7 @@ export const projects: Project[] = [
     stack: ["Python", "Flask", "MySQL", "Android"],
     featured: true,
     accent: "#2d4a1e",
+    posterImage: "/img/projects/foodai.jpg",
   },
   {
     name: "Medicare",
@@ -51,6 +55,7 @@ export const projects: Project[] = [
     stack: ["Python", "Django REST", "SQLite", "React"],
     featured: true,
     accent: "#3d1f2e",
+    posterImage: "/img/projects/medicare.jpg",
   },
   {
     name: "CowinBot",

@@ -1,0 +1,46 @@
+---
+import { featuredProjects } from "../data/projects";
+---
+
+<div class="featured-grid">
+  {
+    featuredProjects.map((project) => (
+      <article class="featured-card" style={`--card-accent: ${project.accent ?? "#1a1a1a"}`}>
+        <a
+          class="featured-card__link"
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="featured-card__visual" aria-hidden="true">
+            {
+              project.posterImage ? (
+                <img
+                  class="featured-card__poster"
+                  src={project.posterImage}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <span class="featured-card__monogram">{project.name.slice(0, 1)}</span>
+              )
+            }
+          </div>
+          <div class="featured-card__body">
+            <h3 class="featured-card__title text-body font-medium">{project.name}</h3>
+            <p class="featured-card__desc text-body text-ink-muted font-normal">{project.description}</p>
+            <div class="featured-card__stack">
+              {project.stack.map((tech) => (
+                <span class="chip">{tech}</span>
+              ))}
+            </div>
+            <span class="featured-card__cta text-small font-medium">
+              View project <span aria-hidden="true">→</span>
+            </span>
+          </div>
+        </a>
+      </article>
+    ))
+  }
+</div>

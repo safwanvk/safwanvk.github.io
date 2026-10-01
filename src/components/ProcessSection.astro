@@ -1,0 +1,106 @@
+---
+import { profile } from "../data/profile";
+import ProcessMockMedia from "./ProcessMockMedia.astro";
+
+const steps = profile.howIBuild;
+---
+
+<section
+  id="how-i-build"
+  class="process-section"
+  data-section="dark"
+  aria-labelledby="process-title"
+>
+  <div class="container-gutter process-section__inner">
+    <header class="process-section__header">
+      <p class="u-label process-section__label">Process</p>
+      <h2 id="process-title" class="u-section-head process-section__title">
+        <span class="process-section__title-line">From domain knowledge to</span>
+        <span class="process-section__title-line">production APIs</span>
+      </h2>
+    </header>
+    <div class="process-layout" data-process-root>
+      <ol class="process-steps" role="tablist" aria-label="How I build">
+        {
+          steps.map((step, index) => (
+            <li class="process-steps__item">
+              <button
+                type="button"
+                class:list={["process-step", { "is-active": index === 0 }]}
+                role="tab"
+                data-process-step
+                data-step-index={index}
+                data-mock-caption={step.mockCaption}
+                aria-selected={index === 0 ? "true" : "false"}
+              >
+                <span class="process-step__heading">
+                  <span class="u-label process-step__num">{step.step}</span>
+                  <span class="process-step__title">{step.title}</span>
+                </span>
+                <div class="process-step__body">
+                  <div class="process-step__body-inner">
+                    <p class="process-step__text text-body">{step.body}</p>
+                    <p class="process-step__footnote text-body">
+                      <svg viewBox="0 0 16 12" aria-hidden="true" class="process-step__footnote-icon">
+                        <path
+                          d="M1 6h2M13 6h2M8 1v10"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.25"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <span>{step.detail}</span>
+                    </p>
+                    <div class="process-step__mobile-mock">
+                      <div class="process-mock__frame process-mock__frame--mobile">
+                        <span class="process-mock__corner" aria-hidden="true" />
+                        <span class="process-mock__corner" aria-hidden="true" />
+                        <span class="process-mock__corner" aria-hidden="true" />
+                        <span class="process-mock__corner" aria-hidden="true" />
+                        <div class="process-mock__screen process-mock__screen--mobile">
+                          <ProcessMockMedia
+                            step={step}
+                            isActive={index === 0}
+                            layerClass="process-mock__layer process-mock__layer--mobile"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="process-mock process-mock--desktop" data-process-mock>
+        <div class="process-mock__frame">
+          <span class="process-mock__corner" aria-hidden="true" />
+          <span class="process-mock__corner" aria-hidden="true" />
+          <span class="process-mock__corner" aria-hidden="true" />
+          <span class="process-mock__corner" aria-hidden="true" />
+          <div class="process-mock__screen">
+            {steps.map((step, index) => (
+              <ProcessMockMedia step={step} isActive={index === 0} />
+            ))}
+          </div>
+        </div>
+        <div class="process-mock__captions" data-process-captions>
+          {
+            steps.map((step, index) => (
+              <p
+                class:list={["u-label", "process-mock__caption", { "is-visible": index === 0 }]}
+                data-process-caption
+                data-caption-index={index}
+                aria-hidden={index === 0 ? "false" : "true"}
+              >
+                {step.mockCaption}
+              </p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

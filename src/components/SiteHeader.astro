@@ -3,12 +3,20 @@ import { profile } from "../data/profile";
 
 const nav = [
   { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
+  { href: "#how-i-build", label: "Process" },
+  { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" },
 ];
 ---
 
+<div class="availability-bar">
+  <p style="margin: 0;">
+    {profile.availabilityBar}
+    {" · "}
+    <a href={`mailto:${profile.email}`}>Email</a>
+  </p>
+</div>
 <header class="site-header">
   <div class="container-gutter site-header__inner">
     <a href="#top" class="wordmark">{profile.wordmark}</a>
@@ -17,7 +25,7 @@ const nav = [
         {
           nav.map((item) => (
             <li>
-              <a href={item.href}>{item.label}</a>
+              <a href={item.href} data-nav-link>{item.label}</a>
             </li>
           ))
         }
@@ -48,7 +56,7 @@ const nav = [
   <nav id="mobile-nav" class="nav-mobile" data-mobile-nav aria-label="Mobile">
     {
       nav.map((item) => (
-        <a href={item.href}>{item.label}</a>
+        <a href={item.href} data-nav-link>{item.label}</a>
       ))
     }
     <a href={`mailto:${profile.email}`}>Email</a>

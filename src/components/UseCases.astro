@@ -1,0 +1,60 @@
+---
+import Section from "./Section.astro";
+import { profile } from "../data/profile";
+---
+
+<Section
+  id="use-cases"
+  label="Use cases"
+  title="One engineer, many kinds of systems"
+  lead={profile.useCasesLead}
+  theme="dotted"
+  align="center"
+>
+  <div class="use-cases-grid">
+    {
+      profile.useCases.map((item) => (
+        <article
+          class:list={[
+            "use-case-card",
+            { "use-case-card--featured": item.layout === "single" },
+          ]}
+        >
+          <p class="use-case-card__label">{item.title}</p>
+          {item.layout === "single" ? (
+            <div class="use-case-card__stack use-case-card__stack--single">
+              <div class="use-case-card__pane use-case-card__pane--tall">
+                <img
+                  src={item.imageTop}
+                  alt={item.imageAltTop}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          ) : (
+            <div class="use-case-card__stack use-case-card__stack--split">
+              <div class="use-case-card__pane">
+                <img
+                  src={item.imageTop}
+                  alt={item.imageAltTop}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="use-case-card__pane">
+                <img
+                  src={item.imageBottom}
+                  alt={item.imageAltBottom ?? ""}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          )}
+          <p class="use-case-card__caption text-small text-ink-muted">{item.caption}</p>
+        </article>
+      ))
+    }
+  </div>
+</Section>

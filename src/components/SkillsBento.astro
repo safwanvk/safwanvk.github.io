@@ -1,0 +1,28 @@
+---
+import Section from "./Section.astro";
+import { skillCategories } from "../data/skills";
+---
+
+<Section
+  id="skills"
+  label="Features"
+  title="Technologies I work with"
+  lead="Languages, frameworks, and tools I use to ship backend systems — from schema design to deployment."
+  theme="dotted"
+  align="center"
+>
+  <div class="skills-bento">
+    {
+      skillCategories.map((cat) => (
+        <article class="skills-bento-card">
+          <h3 class="skills-bento-card__title text-body font-medium">{cat.label}</h3>
+          <div class="skills-bento-card__items">
+            {cat.items.map((item) => (
+              <span class="chip">{item}</span>
+            ))}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>

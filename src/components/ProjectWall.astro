@@ -2,6 +2,12 @@
 import { featuredProjects } from "../data/projects";
 import type { Project } from "../data/projects";
 
+interface Props {
+  variant?: "default" | "hero";
+}
+
+const { variant = "default" } = Astro.props;
+
 type ColumnConfig = {
   duration: string;
   direction: "normal" | "reverse";
@@ -20,11 +26,19 @@ function cardsForColumn(indices: number[]): Project[] {
   const base = indices.map((i) => featuredProjects[i % featuredProjects.length]);
   return [...base, ...base];
 }
+
+function projectInitials(name: string): string {
+  const words = name.trim().split(/\s+/).filter(Boolean);
+  if (words.length >= 2) {
+    return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
+  }
+  return name.slice(0, 2).toUpperCase();
+}
 ---
 
-<section id="projects" class="project-wall-section" aria-labelledby="projects-wall-label">
-  <h2 id="projects-wall-label" class="sr-only">Featured projects</h2>
-  <div class="project-wall container-gutter">
+<div class="project-wall-section" aria-labelledby="projects-wall-label">
+  <h2 id="projects-wall-label" class="sr-only">Project previews</h2>
+  <div class:list={["project-wall", { "project-wall--hero": variant === "hero" }]}>
     {
       columns.map((col) => (
         <div
@@ -37,26 +51,60 @@ function cardsForColumn(indices: number[]): Project[] {
             class="project-wall__track"
             style={`--wall-duration: ${col.duration}; --wall-direction: ${col.direction}`}
           >
-            {cardsForColumn(col.projectIndices).map((project) => (
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="project-wall-card"
-                style={`--card-accent: ${project.accent ?? "#222"}`}
-              >
-                <div class="project-wall-card__bg" aria-hidden="true" />
-                <div class="project-wall-card__content">
-                  <p class="project-wall-card__name">{project.name}</p>
-                  <p class="project-wall-card__stack">
-                    {project.stack.slice(0, 3).join(" · ")}
-                  </p>
-                </div>
-              </a>
-            ))}
+            {cardsForColumn(col.projectIndices).map((project) => {
+              const hasPoster = Boolean(project.posterImage);
+              const stackPreview = project.stack.slice(0, 3);
+              return (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class:list={[
+                    "project-wall-card",
+                    { "project-wall-card--no-poster": !hasPoster },
+                  ]}
+                  style={`--card-accent: ${project.accent ?? "#222"}`}
+                >
+                  {
+                    hasPoster && (
+                      <img
+                        class="project-wall-card__poster"
+                        src={project.posterImage}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )
+                  }
+                  <div class="project-wall-card__bg" aria-hidden="true" />
+                  {
+                    hasPoster ? (
+                      <div class="project-wall-card__content">
+                        <p class="project-wall-card__name">{project.name}</p>
+                        <p class="project-wall-card__stack">
+                          {stackPreview.join(" · ")}
+                        </p>
+                      </div>
+                    ) : (
+                      <div class="project-wall-card__center">
+                        <span class="project-wall-card__monogram" aria-hidden="true">
+                          {projectInitials(project.name)}
+                        </span>
+                        <p class="project-wall-card__name">{project.name}</p>
+                        <div class="project-wall-card__tags">
+                          {stackPreview.map((tag) => (
+                            <span class="project-wall-card__tag">{tag}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  }
+                </a>
+              );
+            })}
           </div>
         </div>
       ))
     }
   </div>
-</section>
+</div>

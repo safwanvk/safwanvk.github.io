@@ -1,0 +1,28 @@
+---
+import { profile } from "../data/profile";
+---
+
+<section class="contact-cta" id="contact" aria-labelledby="contact-title">
+  <div class="container-gutter contact-cta__inner">
+    <div class="contact-cta__copy">
+      <p class="contact-cta__label">Contact</p>
+      <h2 id="contact-title" class="contact-cta__title u-display">Open to interesting backend work</h2>
+      <p class="contact-cta__text">
+        Reach out for roles, consulting, or collaboration on APIs, platforms, and internal tools.
+      </p>
+    </div>
+    <div class="contact-cta__actions">
+      <a class="btn btn--primary" href={`mailto:${profile.email}`}>
+        Email me <span aria-hidden="true">→</span>
+      </a>
+      <a
+        class="btn btn--ghost"
+        href={profile.social.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>

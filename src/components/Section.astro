@@ -1,15 +1,57 @@
 ---
+export type SectionTheme = "light" | "dark" | "dotted";
+export type SectionAlign = "left" | "center";
+
+export type SectionTitleMode = "pixel" | "sans-display";
+
 interface Props {
   id?: string;
   label: string;
   title: string;
+  lead?: string;
+  titleMode?: SectionTitleMode;
+  theme?: SectionTheme;
+  align?: SectionAlign;
+  fullWidth?: boolean;
+  dataSection?: string;
 }
 
-const { id, label, title } = Astro.props;
+const {
+  id,
+  label,
+  title,
+  lead,
+  titleMode = "pixel",
+  theme = "light",
+  align = "left",
+  fullWidth = false,
+  dataSection,
+} = Astro.props;
+
+const useCreetoHeadlines = theme === "dotted" && align === "center";
+const labelClass = useCreetoHeadlines ? "u-label" : "section-block__label";
+const titleClass =
+  useCreetoHeadlines && titleMode === "sans-display"
+    ? "use-cases-display-title u-display"
+    : useCreetoHeadlines
+      ? "u-section-head"
+      : "section-block__title u-display";
 ---
 
-<section class="section-block container-gutter" id={id}>
-  <p class="section-block__label">{label}</p>
-  <h2 class="section-block__title">{title}</h2>
-  <slot />
+<section
+  class:list={[
+    "section-block",
+    `section-block--${theme}`,
+    `section-block--align-${align}`,
+    { "section-block--full": fullWidth },
+  ]}
+  id={id}
+  data-section={dataSection}
+>
+  <div class="section-block__inner container-gutter">
+    <p class={labelClass}>{label}</p>
+    <h2 class={titleClass}>{title}</h2>
+    {lead ? <p class="section-lead text-body text-ink-muted">{lead}</p> : null}
+    <slot />
+  </div>
 </section>

@@ -1,55 +1,75 @@
 ---
-import Section from "./Section.astro";
 import { jobs } from "../data/experience";
+import type { Job } from "../data/experience";
 import { profile } from "../data/profile";
+
+function faqAnswer(job: Job): string {
+  const parts = job.highlights.slice(0, 2).filter(Boolean);
+  return parts.join(" ");
+}
 ---
 
-<Section id="experience" label="Experience" title="Where I've worked">
-  <div class="accordion">
-    {
-      jobs.map((job, index) => (
-        <article
-          class:list={["accordion-item", { "is-open": index === 0 }]}
-          data-accordion-item
-        >
-          <button
-            type="button"
-            class="accordion-trigger"
-            data-accordion-trigger
-            aria-expanded={index === 0 ? "true" : "false"}
-          >
-            <span>
-              <span class="accordion-trigger__role">{job.title}</span>
-              <span class="accordion-trigger__meta"> · {job.company}</span>
-            </span>
-            <span class="accordion-trigger__meta">{job.period}</span>
-            <span class="accordion-trigger__icon" aria-hidden="true">
-              +
-            </span>
-          </button>
-          <div class="accordion-panel">
-            <div class="accordion-panel__inner">
-              <div class="accordion-panel__content">
-                <p style="margin: 0 0 0.75rem;">
-                  <a class="link" href={job.companyUrl} target="_blank" rel="noopener noreferrer">
-                    {job.company}
-                  </a>
-                </p>
-                <ul>
-                  {job.highlights.map((line) => (
-                    <li>{line}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </article>
-      ))
-    }
+<section
+  id="experience"
+  class="experience-section"
+  data-section="dark"
+  aria-labelledby="experience-title"
+>
+  <div class="container-gutter experience-section__inner">
+    <div class="experience-section__content">
+      <header class="experience-section__header">
+        <p class="u-label experience-section__label">Experience</p>
+        <h2 id="experience-title" class="u-section-head experience-section__title">Roles & impact</h2>
+      </header>
+
+      <ul class="accordion accordion--dark experience-faq" data-accordion-root>
+        {
+          jobs.map((job, index) => {
+            const isFirst = index === 0;
+            const triggerId = `experience-trigger-${index}`;
+            const panelId = `experience-panel-${index}`;
+
+            return (
+              <li class:list={["accordion-item", { "is-open": isFirst }]} data-accordion-item>
+                <h3 class="accordion-item__heading">
+                  <button
+                    type="button"
+                    class="accordion-trigger"
+                    id={triggerId}
+                    data-accordion-trigger
+                    aria-expanded={isFirst ? "true" : "false"}
+                    aria-controls={panelId}
+                  >
+                    <span class="accordion-trigger__glyph" aria-hidden="true">
+                      <span class="accordion-trigger__glyph-bar accordion-trigger__glyph-bar--h" />
+                      <span class="accordion-trigger__glyph-bar accordion-trigger__glyph-bar--v" />
+                    </span>
+                    <span class="accordion-trigger__question text-body font-medium text-paper">
+                      {job.title} at {job.company}
+                    </span>
+                  </button>
+                </h3>
+                <div
+                  id={panelId}
+                  class="accordion-panel experience-faq__panel"
+                  role="region"
+                  aria-labelledby={triggerId}
+                >
+                  <div class="accordion-panel__inner">
+                    <p class="experience-faq__answer text-body text-paper-65">{faqAnswer(job)}</p>
+                  </div>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+
+      <p class="experience-section__resume">
+        <a class="text-body" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+          View full resume <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
   </div>
-  <p style="margin-top: 1.5rem;">
-    <a class="btn btn--ghost" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
-      View full resume <span aria-hidden="true">→</span>
-    </a>
-  </p>
-</Section>
+</section>

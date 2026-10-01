@@ -2,8 +2,11 @@
 import { profile } from "../data/profile";
 ---
 
-<section id="top" class="container-gutter hero">
-  <h1 class="hero__title hero-animate">
+<section class="container-gutter hero">
+  <p class="hero__eyebrow hero-animate">
+    {profile.name} · {profile.role}
+  </p>
+  <h1 class="hero__title hero-animate u-section-head">
     <span class="block">{profile.headline[0]}</span>
     <span class="block">{profile.headline[1]}</span>
   </h1>
@@ -12,6 +15,8 @@ import { profile } from "../data/profile";
     <a class="btn btn--primary" href={`mailto:${profile.email}`}>
       Get in touch <span aria-hidden="true">→</span>
     </a>
+    <a class="btn btn--ghost" href="#projects">See work</a>
+    <a class="btn btn--ghost" href="#how-i-build">How I build</a>
     <a class="btn btn--ghost" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
       View resume
     </a>

@@ -10,9 +10,9 @@ const { project } = Astro.props;
 
 <article class="project-card">
   <h3 class="project-card__title">
-    <a href={project.href} target="_blank" rel="noopener noreferrer">{project.name}</a>
+    <a class="text-body font-medium" href={project.href} target="_blank" rel="noopener noreferrer">{project.name}</a>
   </h3>
-  <p class="project-card__desc">{project.description}</p>
+  <p class="project-card__desc text-body text-ink-muted font-normal">{project.description}</p>
   <div class="project-card__links">
     {
       project.codeUrl && (
@@ -30,6 +30,6 @@ const { project } = Astro.props;
     }
   </div>
   <div class="project-card__stack">
-    {project.stack.map((tech) => <span>{tech}</span>)}
+    {project.stack.map((tech) => <span class="chip">{tech}</span>)}
   </div>
 </article>

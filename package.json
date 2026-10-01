@@ -7,14 +7,19 @@
     "dev": "astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "process:loops": "python3 scripts/build-process-loops.py",
+    "process:media": "python3 scripts/generate-process-mocks.py && python3 scripts/build-process-loops.py",
+    "use-cases:media": "python3 scripts/build-use-case-images.py"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/sitemap": "^3.3.1",
     "@fontsource/geist-mono": "^5.2.6",
     "@fontsource/geist-sans": "^5.2.5",
+    "@fontsource/instrument-serif": "^5.2.5",
     "astro": "^5.7.10",
+    "geist": "^1.7.2",
     "typescript": "^5.8.3"
   }
 }

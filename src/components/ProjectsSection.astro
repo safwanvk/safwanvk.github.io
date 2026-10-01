@@ -1,0 +1,45 @@
+---
+import ProjectWall from "./ProjectWall.astro";
+import FeaturedProjects from "./FeaturedProjects.astro";
+import ProjectCard from "./ProjectCard.astro";
+import { otherProjects } from "../data/projects";
+
+---
+
+<section
+  id="projects"
+  class="projects-flow section-block section-block--dotted section-block--align-center"
+  aria-label="Projects"
+>
+  <div class="projects-flow__showcase">
+    <div class="projects-flow__frame">
+      <ProjectWall variant="hero" />
+      <p class="project-wall-caption text-body text-ink-muted">
+        Selected builds — tap a tile or scroll for write-ups and links.
+      </p>
+    </div>
+  </div>
+  <div class="section-block__inner container-gutter">
+    <p class="u-label">Work</p>
+    <h2 class="u-section-head">Selected projects</h2>
+    <p class="section-lead text-body text-ink-muted">
+      Notes on each build — what it does, how it’s built, and links to demos or source where
+      available.
+    </p>
+    <div id="projects-featured">
+      <FeaturedProjects />
+    </div>
+    {
+      otherProjects.length > 0 && (
+        <div id="projects-more" class="more-projects">
+          <h3 class="more-projects__title text-body font-medium">More projects</h3>
+          <div class="project-grid">
+            {otherProjects.map((project) => (
+              <ProjectCard project={project} />
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </div>
+</section>
