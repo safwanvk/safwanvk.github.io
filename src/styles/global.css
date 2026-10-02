@@ -68,6 +68,7 @@
   --font-mono: var(--font-geist-pixel-square);
   --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
   --gutter-inline: 20px;
+  --header-offset: 4rem;
 }
 
 @media (min-width: 640px) {
@@ -231,6 +232,16 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* In-page anchors (sticky header clearance) */
+.section-block[id],
+#how-i-build,
+#experience,
+#use-cases,
+#skills,
+#top {
+  scroll-margin-top: var(--header-offset);
 }
 
 /* Header */
@@ -770,23 +781,79 @@ a {
   box-shadow: 0 10px 36px rgba(10, 10, 10, 0.14);
 }
 
+.project-wall-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.project-wall-card__video,
+.project-wall-card__loop-gif,
 .project-wall-card__poster {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
+}
+
+.project-wall-card__loop-gif {
+  z-index: 0;
+}
+
+.project-wall-card__video {
+  z-index: 1;
+  opacity: 0;
+}
+
+.project-wall-card__media.has-mp4 .project-wall-card__video {
+  opacity: 1;
+}
+
+.project-wall-card__media.has-mp4 .project-wall-card__loop-gif {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-wall-card__poster-static {
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-wall-card__media.is-static .project-wall-card__poster-static {
+  opacity: 1;
+}
+
+.project-wall-card__media.is-static .project-wall-card__loop-gif,
+.project-wall-card__media.is-static .project-wall-card__video {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-wall-card__poster {
   opacity: 0.92;
   z-index: 0;
 }
 
-.project-wall-card:has(.project-wall-card__poster) .project-wall-card__bg {
+.project-wall-card:has(.project-wall-card__poster) .project-wall-card__bg,
+.project-wall-card--video .project-wall-card__bg {
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.82) 0%,
     rgba(0, 0, 0, 0.25) 38%,
     transparent 72%
+  );
+}
+
+.project-wall-card--video .project-wall-card__bg {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.12) 40%,
+    transparent 70%
   );
 }
 
@@ -800,9 +867,14 @@ a {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
 }
 
-.project-wall-card:has(.project-wall-card__poster) .project-wall-card__stack {
+.project-wall-card:has(.project-wall-card__poster) .project-wall-card__stack,
+.project-wall-card--video .project-wall-card__stack {
   font-size: 0.6875rem;
   opacity: 0.9;
+}
+
+.project-wall--hero .project-wall-card--video .project-wall-card__stack--wall {
+  display: none;
 }
 
 .project-wall-card:has(.project-wall-card__poster) .project-wall-card__bg::after {
@@ -1269,6 +1341,41 @@ a {
   color: var(--ink);
 }
 
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 2.5rem auto 0;
+  padding: 0;
+  max-width: 40rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+.about-stats__item {
+  margin: 0;
+  text-align: center;
+}
+
+.about-stats__value {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-mono);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.about-stats__label {
+  margin: 0;
+}
+
 /* Steps */
 .steps {
   display: grid;
@@ -1521,7 +1628,7 @@ a {
   background: transparent;
   overflow-x: clip;
   overflow-y: visible;
-  scroll-margin-top: var(--header-offset, 4.5rem);
+  scroll-margin-top: var(--header-offset);
 }
 
 .site-footer__inner {
@@ -2237,6 +2344,13 @@ a {
   text-align: center;
 }
 
+.experience-section__lead {
+  margin: 1rem auto 0;
+  max-width: 36rem;
+  color: rgb(255 255 255 / 0.65);
+  line-height: var(--text-body--line-height);
+}
+
 .experience-section__label {
   margin-bottom: 2.5rem;
 }
@@ -2491,8 +2605,21 @@ a {
 }
 
 .projects-flow {
-  scroll-margin-top: var(--header-offset, 4.5rem);
+  scroll-margin-top: var(--header-offset);
   width: 100%;
+}
+
+.projects-flow__intro {
+  padding-bottom: 2rem;
+}
+
+.projects-flow__intro .section-lead {
+  margin-bottom: 0;
+}
+
+.projects-flow__subhead {
+  margin: 0 0 1.25rem;
+  text-align: center;
 }
 
 .projects-flow__showcase {

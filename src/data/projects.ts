@@ -9,6 +9,8 @@ export type Project = {
   featured: boolean;
   accent?: string;
   posterImage?: string;
+  previewVideo?: string;
+  previewVideoGif?: string;
 };
 
 export const projects: Project[] = [
@@ -22,12 +24,14 @@ export const projects: Project[] = [
     featured: true,
     accent: "#1a3a2f",
     posterImage: "/img/projects/invest-os.jpg",
+    previewVideo: "/video/projects/invest-os.mp4",
+    previewVideoGif: "/video/projects/invest-os.gif",
   },
   {
     name: "InnoFlow",
     href: "https://www.linkedin.com/company/lite-sw/",
     description:
-      "Digital transformation platform for document management, automated workflows, and compliance tools.",
+      "Document and workflow platform: DRF APIs for management, automation, and compliance — Vue.js client for operators.",
     secondaryUrl:
       "https://rift-second-cca.notion.site/InnoFlow-1410a333a6628028b237e54193ae9cd0",
     secondaryLabel: "Explore overview",
@@ -35,27 +39,34 @@ export const projects: Project[] = [
     featured: true,
     accent: "#1e2a4a",
     posterImage: "/img/projects/innoflow.jpg",
+    previewVideo: "/video/projects/innoflow.mp4",
+    previewVideoGif: "/video/projects/innoflow.gif",
   },
   {
     name: "Foodai",
     href: "https://github.com/safwanvk/Foodai",
     description:
-      "Vegetable detection with computer vision to identify produce and suggest recipes.",
+      "CV pipeline and Flask API for vegetable detection; Android client for capture and recipe suggestions.",
     codeUrl: "https://github.com/safwanvk/Foodai",
     stack: ["Python", "Flask", "MySQL", "Android"],
     featured: true,
     accent: "#2d4a1e",
     posterImage: "/img/projects/foodai.jpg",
+    previewVideo: "/video/projects/foodai.mp4",
+    previewVideoGif: "/video/projects/foodai.gif",
   },
   {
     name: "Medicare",
     href: "https://enigmatic-brook-69506.herokuapp.com/",
-    description: "Medical store management system with REST API and web client.",
+    description:
+      "Pharmacy inventory and orders: Django REST backend with a React admin and store-facing client.",
     codeUrl: "https://github.com/safwanvk/medicare",
     stack: ["Python", "Django REST", "SQLite", "React"],
     featured: true,
     accent: "#3d1f2e",
     posterImage: "/img/projects/medicare.jpg",
+    previewVideo: "/video/projects/medicare.mp4",
+    previewVideoGif: "/video/projects/medicare.gif",
   },
   {
     name: "CowinBot",

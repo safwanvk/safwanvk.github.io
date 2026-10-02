@@ -22,18 +22,19 @@ export const profile = {
   wordmark: "SAFWAN VK",
   footerDisplayName: "Safwan Vk",
   footerTagline:
-    "Backend APIs and production systems for founders, teams, and regulated industries.",
+    "Lead Backend Engineer — APIs and production systems for healthcare, aviation, and SaaS teams.",
   footerWatermarkText: "SAFWAN VK",
-  role: "Backend Developer",
+  role: "Lead Backend Engineer",
   headline: ["Lead Backend Engineer", "for scalable products & APIs"],
   tagline:
-    "I build readable, scalable backend systems — turning complex domains into maintainable APIs and shipping work that holds up in production.",
+    "Healthcare, aviation, and SaaS — I design and ship backend systems that hold up in production. Full-stack when the product needs UI and APIs together.",
   email: "dev.safwan@outlook.com",
   resumeUrl: "/Safwan Resume.pdf",
   siteUrl: "https://safwanvk.github.io",
   description:
-    "Lead Backend Engineer focused on scalable APIs, Django/FastAPI, and production-ready systems.",
-  availabilityBar: "Lead Backend @ Barq Group · Get in touch for backend roles & collaborations",
+    "Lead Backend Engineer — scalable APIs, Django/FastAPI, PostgreSQL. Healthcare, aviation, and SaaS. Full-stack when the product needs it.",
+  availabilityBar:
+    "Lead Backend @ Barq Group · Open to backend and full-stack collaborations",
   social: {
     github: "https://github.com/safwanvk",
     linkedin: "https://www.linkedin.com/in/safwan-vk/",
@@ -41,26 +42,26 @@ export const profile = {
     twitter: "",
   },
   stats: [
-    { value: "5+", label: "Years building backends" },
+    { value: "5+", label: "Years on backends" },
     { value: "Healthcare · Aviation · SaaS", label: "Domains" },
     { value: "Python · Django · FastAPI", label: "Core stack" },
   ],
   about: [
     {
-      text: "I'm currently working as a Lead Backend Engineer at ",
+      text: "I'm a Lead Backend Engineer at ",
       link: { label: "Barq Group", href: "https://www.barqgroup.com/" },
-      suffix: ", converting innovative ideas into code.",
+      suffix: ", building healthcare systems that hospital teams can operate and extend.",
     },
     {
-      text: "As a developer, I enjoy building scalable and readable code — combining domain clarity with solid algorithms and API design.",
+      text: "I focus on clear domain models, readable APIs, and reliable deployments. Backend-first — and I ship full-stack when clients or teams need web or mobile alongside the service layer.",
     },
   ] satisfies AboutParagraph[],
   useCasesLead:
-    "From regulated healthcare to internal ops — backend systems that teams can extend and operate.",
+    "Where I’m most useful: platforms teams integrate against, regulated workflows, and internal ops backends.",
   useCases: [
     {
       title: "API platforms",
-      caption: "RESTful services, auth, and integrations teams can extend without surprises.",
+      caption: "Auth, contracts, and integrations other engineers can extend without surprises.",
       accent: "#1e2a4a",
       symbol: "API",
       tags: ["REST", "Auth", "OpenAPI"],
@@ -72,7 +73,7 @@ export const profile = {
     },
     {
       title: "Healthcare & compliance",
-      caption: "Hospital ops, regulated workflows, and data models that scale across facilities.",
+      caption: "Hospital ops, audit-friendly workflows, and data models that scale across sites.",
       accent: "#1a3a2f",
       symbol: "HIPAA",
       tags: ["Workflows", "Audit", "Multi-site"],
@@ -82,7 +83,7 @@ export const profile = {
     },
     {
       title: "Internal ops tools",
-      caption: "Dashboards, automation, and backends that cut weekly work to minutes.",
+      caption: "Dashboards, automation, and APIs that replace weekly manual work.",
       accent: "#3d1f2e",
       symbol: "Ops",
       tags: ["Dashboards", "Automation", "Reports"],
@@ -98,7 +99,8 @@ export const profile = {
       step: "01",
       title: "Understand the domain",
       body: "Map workflows, constraints, and failure modes before writing code — especially in healthcare, aviation, and ops-heavy products.",
-      detail: "No script or outline required — start from docs, interviews, or a rough product idea.",
+      detail:
+        "Start from docs, stakeholder interviews, and existing systems — not assumptions about the happy path.",
       mockTags: ["Domain docs", "Workflows", "Constraints"],
       mockImage: "/img/process/saas-step-1.jpg",
       mockVideo: "/video/process/domain.mp4",

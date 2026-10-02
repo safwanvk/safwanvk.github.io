@@ -1,13 +1,6 @@
 ---
 import { profile } from "../data/profile";
-
-const nav = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#how-i-build", label: "Process" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" },
-];
+import { siteNav } from "../data/site-content";
 ---
 
 <div class="availability-bar">
@@ -23,7 +16,7 @@ const nav = [
     <nav aria-label="Main">
       <ul class="nav-desktop">
         {
-          nav.map((item) => (
+          siteNav.map((item) => (
             <li>
               <a href={item.href} data-nav-link>{item.label}</a>
             </li>
@@ -55,7 +48,7 @@ const nav = [
   </div>
   <nav id="mobile-nav" class="nav-mobile" data-mobile-nav aria-label="Mobile">
     {
-      nav.map((item) => (
+      siteNav.map((item) => (
         <a href={item.href} data-nav-link>{item.label}</a>
       ))
     }

@@ -1,5 +1,6 @@
 ---
 import { profile } from "../data/profile";
+import { footerSiteLinks } from "../data/site-content";
 import FooterLogoMark from "./FooterLogoMark.astro";
 
 const year = new Date().getFullYear();
@@ -17,12 +18,15 @@ const year = new Date().getFullYear();
       </div>
       <nav class="site-footer__nav" aria-label="Footer">
         <div class="site-footer__col">
-          <p class="site-footer__col-title text-small">Product</p>
+          <p class="site-footer__col-title text-small">Site</p>
           <ul>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#how-i-build">Process</a></li>
-            <li><a href="#skills">Features</a></li>
-            <li><a href="#experience">Experience</a></li>
+            {
+              footerSiteLinks.map((item) => (
+                <li>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))
+            }
           </ul>
         </div>
         <div class="site-footer__col">

@@ -13,11 +13,6 @@ function initHeaderScroll(): void {
   window.addEventListener("scroll", onScroll, { passive: true });
 }
 
-function getHeaderProbeY(header: HTMLElement): number {
-  const rect = header.getBoundingClientRect();
-  return rect.bottom - 1;
-}
-
 function getHeaderStackHeight(): number {
   const bar = document.querySelector<HTMLElement>(".availability-bar");
   const header = document.querySelector<HTMLElement>(".site-header");
@@ -73,10 +68,13 @@ function initHeaderOnDark(): void {
   window.addEventListener("resize", mountObserver, { passive: true });
 }
 
+function getSectionDocumentTop(el: HTMLElement): number {
+  return el.getBoundingClientRect().top + window.scrollY;
+}
+
 function initNavScrollSpy(): void {
-  const header = document.querySelector<HTMLElement>(".site-header");
   const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
-  if (!header || navLinks.length === 0) return;
+  if (navLinks.length === 0) return;
 
   const sections = Array.from(navLinks)
     .map((link) => {
@@ -85,15 +83,17 @@ function initNavScrollSpy(): void {
       const el = document.getElementById(id);
       return el ? { link, el } : null;
     })
-    .filter((entry): entry is { link: HTMLAnchorElement; el: HTMLElement } => entry !== null);
+    .filter((entry): entry is { link: HTMLAnchorElement; el: HTMLElement } => entry !== null)
+    .sort((a, b) => getSectionDocumentTop(a.el) - getSectionDocumentTop(b.el));
+
+  const scrollSpyBufferPx = 8;
 
   const update = (): void => {
-    const probeY = getHeaderProbeY(header);
+    const scrollLine = window.scrollY + getHeaderStackHeight() + scrollSpyBufferPx;
     let activeHref: string | null = null;
 
     sections.forEach(({ link, el }) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top <= probeY && rect.bottom >= probeY) {
+      if (getSectionDocumentTop(el) <= scrollLine) {
         activeHref = link.getAttribute("href");
       }
     });
@@ -277,12 +277,66 @@ function initAccordion(): void {
   });
 }
 
+function initProjectWallVideos(): void {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cards = document.querySelectorAll<HTMLElement>("[data-wall-card]");
+
+  cards.forEach((card) => {
+    const media = card.querySelector<HTMLElement>("[data-wall-media]");
+    const video = card.querySelector<HTMLVideoElement>("[data-wall-video]");
+    if (!media) return;
+
+    const markMp4 = (): void => {
+      media.classList.add("has-mp4");
+    };
+
+    const showGifFallback = (): void => {
+      media.classList.remove("has-mp4");
+    };
+
+    if (video) {
+      video.addEventListener("loadeddata", markMp4, { once: true });
+      video.addEventListener("canplay", markMp4, { once: true });
+      video.addEventListener("error", showGifFallback, { once: true });
+    }
+
+    if (reducedMotion) {
+      media.classList.add("is-static");
+      if (video) {
+        video.pause();
+      }
+      return;
+    }
+
+    if (!video) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!video || !media.classList.contains("has-mp4")) return;
+          if (entry.isIntersecting) {
+            void video.play().catch(() => showGifFallback());
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { root: null, threshold: 0.35 },
+    );
+
+    observer.observe(card);
+  });
+}
+
 export function initSite(): void {
   initHeaderScroll();
   initHeaderOnDark();
   initNavScrollSpy();
   initMobileNav();
   initProcessSteps();
+  initProjectWallVideos();
   initAccordion();
   initDotGridCanvas();
   initFooterWatermark();

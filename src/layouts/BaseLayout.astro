@@ -1,15 +1,13 @@
 ---
 import "../styles/global.css";
 import { profile } from "../data/profile";
+import { pageMeta } from "../data/site-content";
 interface Props {
   title?: string;
   description?: string;
 }
 
-const {
-  title = `${profile.name} | ${profile.role}`,
-  description = profile.description,
-} = Astro.props;
+const { title = pageMeta.title, description = pageMeta.description } = Astro.props;
 
 const canonical = profile.siteUrl + Astro.url.pathname;
 const ogImage = `${profile.siteUrl}/img/og.png`;

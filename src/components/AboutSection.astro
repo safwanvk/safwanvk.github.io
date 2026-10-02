@@ -1,11 +1,13 @@
 ---
 import Section from "./Section.astro";
-import { profile } from "../data/profile";
+import { homeSections } from "../data/site-content";
+
+const { about } = homeSections;
 ---
 
-<Section id="about" label="About" title="Background" theme="dotted" align="center">
+<Section id="about" label={about.label} title={about.title} theme="dotted" align="center">
   {
-    profile.about.map((paragraph) => (
+    about.paragraphs.map((paragraph) => (
       <p class="text-body text-ink-muted">
         {paragraph.text}
         {paragraph.link && (
@@ -19,4 +21,14 @@ import { profile } from "../data/profile";
       </p>
     ))
   }
+  <dl class="about-stats">
+    {
+      about.stats.map((stat) => (
+        <div class="about-stats__item">
+          <dt class="about-stats__value">{stat.value}</dt>
+          <dd class="about-stats__label text-small text-ink-muted">{stat.label}</dd>
+        </div>
+      ))
+    }
+  </dl>
 </Section>

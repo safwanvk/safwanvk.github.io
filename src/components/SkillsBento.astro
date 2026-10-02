@@ -1,13 +1,16 @@
 ---
 import Section from "./Section.astro";
 import { skillCategories } from "../data/skills";
+import { homeSections } from "../data/site-content";
+
+const { stack } = homeSections;
 ---
 
 <Section
   id="skills"
-  label="Features"
-  title="Technologies I work with"
-  lead="Languages, frameworks, and tools I use to ship backend systems — from schema design to deployment."
+  label={stack.label}
+  title={stack.title}
+  lead={stack.lead}
   theme="dotted"
   align="center"
 >

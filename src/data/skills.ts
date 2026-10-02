@@ -6,23 +6,23 @@ export type SkillCategory = {
 
 export const skillCategories: SkillCategory[] = [
   {
+    id: "frameworks",
+    label: "Frameworks",
+    items: ["Django", "Django REST framework", "FastAPI", "Flask", "Flask-RESTful"],
+  },
+  {
     id: "languages",
     label: "Languages",
     items: ["Python", "JavaScript", "HTML", "CSS"],
   },
   {
-    id: "frameworks",
-    label: "Frameworks",
-    items: ["Django", "Flask", "Django REST framework", "Flask-RESTful"],
+    id: "database",
+    label: "Database",
+    items: ["PostgreSQL", "MySQL"],
   },
   {
     id: "tools",
     label: "Tools",
-    items: ["Bash", "Git & GitHub", "Chrome DevTools", "Postman"],
-  },
-  {
-    id: "database",
-    label: "Database",
-    items: ["MySQL", "PostgreSQL"],
+    items: ["Bash", "Git & GitHub", "Postman", "Chrome DevTools"],
   },
 ];

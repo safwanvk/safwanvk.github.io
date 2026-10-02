@@ -53,6 +53,8 @@ function projectInitials(name: string): string {
           >
             {cardsForColumn(col.projectIndices).map((project) => {
               const hasPoster = Boolean(project.posterImage);
+              const hasPreview =
+                Boolean(project.previewVideoGif) || Boolean(project.previewVideo);
               const stackPreview = project.stack.slice(0, 3);
               return (
                 <a
@@ -61,27 +63,67 @@ function projectInitials(name: string): string {
                   rel="noopener noreferrer"
                   class:list={[
                     "project-wall-card",
-                    { "project-wall-card--no-poster": !hasPoster },
+                    { "project-wall-card--no-poster": !hasPoster && !hasPreview },
+                    { "project-wall-card--video": hasPreview },
                   ]}
                   style={`--card-accent: ${project.accent ?? "#222"}`}
+                  data-wall-card
                 >
                   {
-                    hasPoster && (
-                      <img
-                        class="project-wall-card__poster"
-                        src={project.posterImage}
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                      />
+                    hasPreview ? (
+                      <div class="project-wall-card__media" data-wall-media>
+                        {project.posterImage ? (
+                          <img
+                            class="project-wall-card__poster-static"
+                            src={project.posterImage}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : null}
+                        {project.previewVideoGif ? (
+                          <img
+                            class="project-wall-card__loop-gif"
+                            src={project.previewVideoGif}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                            data-wall-gif
+                          />
+                        ) : null}
+                        {project.previewVideo ? (
+                          <video
+                            class="project-wall-card__video"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            poster={project.posterImage}
+                            data-wall-video
+                            data-wall-gif-src={project.previewVideoGif ?? ""}
+                          >
+                            <source src={project.previewVideo} type="video/mp4" />
+                          </video>
+                        ) : null}
+                      </div>
+                    ) : (
+                      hasPoster && (
+                        <img
+                          class="project-wall-card__poster"
+                          src={project.posterImage}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )
                     )
                   }
                   <div class="project-wall-card__bg" aria-hidden="true" />
                   {
-                    hasPoster ? (
+                    hasPoster || hasPreview ? (
                       <div class="project-wall-card__content">
                         <p class="project-wall-card__name">{project.name}</p>
-                        <p class="project-wall-card__stack">
+                        <p class="project-wall-card__stack project-wall-card__stack--wall">
                           {stackPreview.join(" · ")}
                         </p>
                       </div>

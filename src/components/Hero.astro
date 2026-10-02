@@ -1,25 +1,42 @@
 ---
-import { profile } from "../data/profile";
+import { homeSections } from "../data/site-content";
+
+const { hero } = homeSections;
 ---
 
 <section class="container-gutter hero">
   <p class="hero__eyebrow hero-animate">
-    {profile.name} · {profile.role}
+    {hero.eyebrow}
   </p>
   <h1 class="hero__title hero-animate u-section-head">
-    <span class="block">{profile.headline[0]}</span>
-    <span class="block">{profile.headline[1]}</span>
+    <span class="block">{hero.headline[0]}</span>
+    <span class="block">{hero.headline[1]}</span>
   </h1>
-  <p class="hero__subtitle hero-animate hero-animate--delay">{profile.tagline}</p>
+  <p class="hero__subtitle hero-animate hero-animate--delay">{hero.tagline}</p>
   <div class="hero__actions hero-animate hero-animate--delay">
-    <a class="btn btn--primary" href={`mailto:${profile.email}`}>
-      Get in touch <span aria-hidden="true">→</span>
-    </a>
-    <a class="btn btn--ghost" href="#projects">See work</a>
-    <a class="btn btn--ghost" href="#how-i-build">How I build</a>
-    <a class="btn btn--ghost" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
-      View resume
-    </a>
+    {
+      hero.actions.map((action) =>
+        action.variant === "primary" ? (
+          <a
+            class="btn btn--primary"
+            href={action.href}
+            target={action.external ? "_blank" : undefined}
+            rel={action.external ? "noopener noreferrer" : undefined}
+          >
+            {action.label} <span aria-hidden="true">→</span>
+          </a>
+        ) : (
+          <a
+            class="btn btn--ghost"
+            href={action.href}
+            target={action.external ? "_blank" : undefined}
+            rel={action.external ? "noopener noreferrer" : undefined}
+          >
+            {action.label}
+          </a>
+        ),
+      )
+    }
   </div>
 </section>
 

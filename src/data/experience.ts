@@ -13,7 +13,7 @@ export const jobs: Job[] = [
     period: "Sep 2025 – Present",
     title: "Lead Backend Engineer",
     highlights: [
-      "Focusing on building better healthcare tools aimed at improving hospital operations and patient experience, with potential to impact millions of patients and thousands of facilities across the world.",
+      "Own backend architecture and APIs for healthcare products that improve hospital operations and patient experience across many facilities.",
     ],
   },
   {
@@ -40,8 +40,8 @@ export const jobs: Job[] = [
     period: "Jan 2022 – Feb 2023",
     title: "Software Development Engineer-1",
     highlights: [
-      "Contributed to the development of TARA, a SaaS platform revolutionizing aircraft maintenance compliance and data analytics, enhancing operational efficiency by 30%.",
-      "Designed and implemented scalable backend systems using Python and Django REST Framework, transitioning legacy processes to secure and efficient APIs for web and native applications.",
+      "Built backend services for TARA, a SaaS platform for aircraft maintenance compliance and operational analytics.",
+      "Designed and implemented Django REST APIs that replaced legacy processes and powered web and native clients.",
       "Built advanced features for TARA Electronic Tech Log (ETL), enabling real-time tracking of flight and technical data, significantly reducing manual errors and improving compliance.",
       "Engineered 3D Repair Mapping, delivering lifecycle tracking of aircraft damages with intuitive 3D visualizations across iPad, Windows, and macOS platforms.",
       "Developed advanced search capabilities with OpenSearch, enabling OCR-based document indexing and real-time dashboard analytics.",

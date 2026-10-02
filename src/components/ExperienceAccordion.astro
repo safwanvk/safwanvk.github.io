@@ -2,6 +2,9 @@
 import { jobs } from "../data/experience";
 import type { Job } from "../data/experience";
 import { profile } from "../data/profile";
+import { homeSections } from "../data/site-content";
+
+const { experience } = homeSections;
 
 function faqAnswer(job: Job): string {
   const parts = job.highlights.slice(0, 2).filter(Boolean);
@@ -18,8 +21,9 @@ function faqAnswer(job: Job): string {
   <div class="container-gutter experience-section__inner">
     <div class="experience-section__content">
       <header class="experience-section__header">
-        <p class="u-label experience-section__label">Experience</p>
-        <h2 id="experience-title" class="u-section-head experience-section__title">Roles & impact</h2>
+        <p class="u-label experience-section__label">{experience.label}</p>
+        <h2 id="experience-title" class="u-section-head experience-section__title">{experience.title}</h2>
+        <p class="experience-section__lead text-body text-ink-muted">{experience.lead}</p>
       </header>
 
       <ul class="accordion accordion--dark experience-faq" data-accordion-root>

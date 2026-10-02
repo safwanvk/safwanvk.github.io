@@ -1,13 +1,16 @@
 ---
 import Section from "./Section.astro";
 import { profile } from "../data/profile";
+import { homeSections } from "../data/site-content";
+
+const { useCases } = homeSections;
 ---
 
 <Section
   id="use-cases"
-  label="Use cases"
-  title="One engineer, many kinds of systems"
-  lead={profile.useCasesLead}
+  label={useCases.label}
+  title={useCases.title}
+  lead={useCases.lead}
   theme="dotted"
   align="center"
 >

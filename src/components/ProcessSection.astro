@@ -1,8 +1,10 @@
 ---
 import { profile } from "../data/profile";
+import { homeSections } from "../data/site-content";
 import ProcessMockMedia from "./ProcessMockMedia.astro";
 
 const steps = profile.howIBuild;
+const { process } = homeSections;
 ---
 
 <section
@@ -13,10 +15,13 @@ const steps = profile.howIBuild;
 >
   <div class="container-gutter process-section__inner">
     <header class="process-section__header">
-      <p class="u-label process-section__label">Process</p>
+      <p class="u-label process-section__label">{process.label}</p>
       <h2 id="process-title" class="u-section-head process-section__title">
-        <span class="process-section__title-line">From domain knowledge to</span>
-        <span class="process-section__title-line">production APIs</span>
+        {
+          process.titleLines.map((line) => (
+            <span class="process-section__title-line">{line}</span>
+          ))
+        }
       </h2>
     </header>
     <div class="process-layout" data-process-root>

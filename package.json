@@ -10,7 +10,8 @@
     "check": "astro check",
     "process:loops": "python3 scripts/build-process-loops.py",
     "process:media": "python3 scripts/generate-process-mocks.py && python3 scripts/build-process-loops.py",
-    "use-cases:media": "python3 scripts/build-use-case-images.py"
+    "use-cases:media": "python3 scripts/build-use-case-images.py",
+    "projects:media": "python3 scripts/build-project-previews.py"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
