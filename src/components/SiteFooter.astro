@@ -1,7 +1,6 @@
 ---
 import { profile } from "../data/profile";
 import { footerSiteLinks } from "../data/site-content";
-import FooterLogoMark from "./FooterLogoMark.astro";
 
 const year = new Date().getFullYear();
 ---
@@ -11,7 +10,6 @@ const year = new Date().getFullYear();
     <div class="site-footer__top">
       <div class="site-footer__brand">
         <a href="#top" class="site-footer__logo">
-          <FooterLogoMark />
           {profile.footerDisplayName}
         </a>
         <p class="site-footer__tagline text-small text-ink-muted">{profile.footerTagline}</p>
