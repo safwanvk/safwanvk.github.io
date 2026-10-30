@@ -18,9 +18,11 @@ export const projects: Project[] = [
     name: "Invest OS",
     href: "https://investment-os-cvjn.onrender.com/",
     description:
-      "Personal ops OS for Zerodha DIY investing: syncs fills, goal-tags transactions, SIP checklist, and reconciles leftovers. Goal tags stay truth — brokers are the mirror.",
+      "Personal ops OS for Zerodha DIY: you execute in Coin/Kite; the app syncs fills, goal-tags the ledger, runs This month SIP checklists, Review scoreboards, and Reconcile drift. Goal-tagged transactions stay authoritative — brokers are the mirror; Sync never silently rebuilds goal splits.",
     codeUrl: "https://github.com/safwanvk/investment-os",
-    stack: ["Python", "FastAPI", "PostgreSQL", "Jinja"],
+    secondaryUrl: "https://github.com/safwanvk/investment-os#readme",
+    secondaryLabel: "Readme",
+    stack: ["Python", "FastAPI", "PostgreSQL", "Jinja", "Docker", "Kite"],
     featured: true,
     accent: "#1a3a2f",
     posterImage: "/img/projects/invest-os.jpg",
