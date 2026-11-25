@@ -47,7 +47,7 @@ export const homeSections = {
     label: "Projects",
     title: "What I've built",
     lead:
-      "Production APIs and apps across investing, workflows, vision, and healthcare — with write-ups, demos, and source where available.",
+      "Personal ops backends (investing, clips, content), workflow platforms, and healthcare demos — write-ups, live demos, and source where available.",
     wallCaption: "Preview tiles — scroll for details and links.",
     featuredHeading: "Selected work",
     moreHeading: "More projects",

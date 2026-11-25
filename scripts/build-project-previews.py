@@ -21,7 +21,7 @@ FRAMES = 30
 DURATION_MS = 80
 ZOOM_END = 1.08
 
-SLUGS = ("invest-os", "innoflow", "foodai", "medicare")
+SLUGS = ("invest-os", "clip-os", "content-os", "innoflow")
 
 
 def fit_cover(img: Image.Image, target_w: int, target_h: int) -> Image.Image:
